@@ -10,4 +10,7 @@ Com este comando, a ligação está estabelecida e a estação está a fazer for
 
 -> Correndo o script "conversor.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON.
 
+-> Correndo o script "conversor_bms_json.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON, além disso também recebe ficheiros ".json" de input e traduz para MAVlink, fazendo o envio dos mesmos.
+
+
 ->Falta adicionar o envio das mensagens para o BMS
