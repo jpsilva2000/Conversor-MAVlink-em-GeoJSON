@@ -4,7 +4,7 @@ O objetivo dos seguintes scripts é criar um ficheiro ".json" através da leitur
 
 -> O script "heatbeats_plus_position.py" envia Heartbeats e uma Posição fixa, simbolizando o UAV/UGV. O envio das mensagens GLOBAL_POSITION_INT será utilizado para testar a funcionalidade do script conversor. 
 
--> No lado da estação de controlo, com recurso ao pymavproxy, é usado o seguinte comando: mavproxy.py --master=udpout:192.168.1.86:14550 --out=udp:127.0.0.1:14551
+-> No lado da estação de controlo, com recurso ao pymavproxy, é usado o seguinte comando: mavproxy.py --master=udpout:"IP_UAV/UGV":14550 --out=udp:127.0.0.1:14551
 
 Com este comando, a ligação está estabelecida e a estação está a fazer forwarding das mensagens para o porto 14551, no localhost. 
 
