@@ -10,3 +10,4 @@ Com este comando, a ligação está estabelecida e a estação está a fazer for
 
 -> Correndo o script "conversor.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON.
 
+->Falta adicionar o envio das mensagens para o BMS
