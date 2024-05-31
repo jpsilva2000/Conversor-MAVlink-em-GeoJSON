@@ -8,9 +8,5 @@ O objetivo dos seguintes scripts é criar um ficheiro ".json" através da leitur
 
 Com este comando, a ligação está estabelecida e a estação está a fazer forwarding das mensagens para o porto 14551, no localhost. 
 
--> Correndo o script "conversor.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON.
 
--> Correndo o script "conversor_bms_json.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON, além disso também recebe ficheiros ".json" de input e traduz para MAVlink, fazendo o envio dos mesmos.
-
-
-->Envio de mensagens MQTT para transmitir o GeoJSON
+-> Correndo o script "conversor_bms_json.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON e enviado por MQTT para um servidor. Além disso também está à escuta de mensagens GeoJSON no servidor, traduz para MAVlink, e faz o envio das mesmas como mensagens ADSB.
