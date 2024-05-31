@@ -1,6 +1,16 @@
 import time
 import json
 from pymavlink import mavutil
+import paho.mqtt.client as mqtt
+
+# MQTT Configuration
+MQTT_BROKER = 'test.mosquitto.org'
+MQTT_PORT = 1883
+MQTT_TOPIC = 'uas/telemetry'
+
+# Create MQTT client and connect to the broker
+mqtt_client = mqtt.Client()
+mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
 
 # Create the connection
 master = mavutil.mavlink_connection('udp:127.0.0.1:14551')
@@ -41,7 +51,11 @@ def create_json(latitude, longitude, altitude, heading, timestamp):
     with open('output.json', 'w') as json_file:
         json_file.write(json_data)
     
-    print('criação json')
+    print('JSON criado:', json_data)
+
+    # Publish JSON to MQTT
+    mqtt_client.publish(MQTT_TOPIC, json_data)
+    print('JSON publicado no MQTT:', json_data)
 
 def gps_raw_int(msg):
     """Handles GPS_RAW_INT"""
