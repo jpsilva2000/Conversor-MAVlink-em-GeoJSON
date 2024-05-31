@@ -10,9 +10,30 @@ MQTT_TOPIC = 'uas/telemetry'
 
 # Create MQTT client and connect to the broker
 mqtt_client = mqtt.Client()
+
+# Callback function for when the client receives a CONNACK response from the server.
+def on_connect(client, userdata, flags, rc):
+    print("Connected with result code " + str(rc))
+    # Subscribe to the topic
+    client.subscribe(MQTT_TOPIC)
+
+# Callback function for when a PUBLISH message is received from the server.
+def on_message(client, userdata, msg):
+    print("Message received from MQTT topic:", msg.topic)
+    json_data = msg.payload.decode('utf-8')
+    json_to_mavlink(json_data)
+
+# Bind the on_connect and on_message functions to the MQTT client
+mqtt_client.on_connect = on_connect
+mqtt_client.on_message = on_message
+
+# Connect to the broker
 mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
 
-# Create the connection
+# Start the MQTT client loop in a separate thread
+mqtt_client.loop_start()
+
+# Create the connection to MAVLink
 master = mavutil.mavlink_connection('udp:127.0.0.1:14551')
 
 # Valores fixos do JSON
@@ -23,7 +44,7 @@ fixed_values = {
         "coordinates": [
             0,  # Placeholder, será atualizado com os valores recebidos
             0,  # Placeholder, será atualizado com os valores recebidos
-            0  # Placeholder, será atualizado com os valores recebidos
+            0   # Placeholder, será atualizado com os valores recebidos
         ]
     },
     "properties": {
@@ -76,7 +97,7 @@ def global_position_int(msg):
     create_json(latitude, longitude, altitude, heading, timestamp)
 
 def json_to_mavlink(json_data):
-    """Converts JSON data to a MAVLink GLOBAL_POSITION_INT message and sends it."""
+    """Converts JSON data to a MAVLink ADSB_VEHICLE message and sends it."""
     try:
         data = json.loads(json_data)
 
@@ -85,6 +106,8 @@ def json_to_mavlink(json_data):
         altitude = data["geometry"]["coordinates"][2] * 1e3  # Convert back to mm
         timestamp = data["properties"]["timestamp"]
         heading = data["properties"]["heading"] * 100  # Convert back to cdeg
+
+        print(f"Latitude: {latitude}, Longitude: {longitude}, Altitude: {altitude}, Heading: {heading}")
 
         # Create a MAVLink ADSB_VEHICLE message
         msg = master.mav.adsb_vehicle_encode(
@@ -105,25 +128,20 @@ def json_to_mavlink(json_data):
         
         # Send the ADSB_VEHICLE message
         master.mav.send(msg)
-        print('MAVLink message sent:', msg)
+        print('MAVLink ADSB_VEHICLE message sent:', msg)
     except Exception as e:
         print(f"Error converting JSON to MAVLink: {e}")
 
 # Loop principal
 while True:
     try:
-        # Listen for incoming messages
+        # Listen for incoming MAVLink messages
         msg = master.recv_match(blocking=False)
         if msg:
             if msg.get_type() == 'GLOBAL_POSITION_INT':
                 global_position_int(msg)
             elif msg.get_type() == 'GPS_RAW_INT':
                 gps_raw_int(msg)
-
-        # Read JSON from file and send as MAVLink message
-        with open('input.json', 'r') as json_file:
-            json_data = json_file.read()
-            json_to_mavlink(json_data)
     except mavutil.mavlink.MAVLinkException as e:
         print(f"MAVLink communication error: {e}")
     except Exception as e:
