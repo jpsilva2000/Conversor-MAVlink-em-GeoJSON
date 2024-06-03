@@ -113,9 +113,19 @@ def json_to_mavlink(json_data):
 
         print(f"Latitude: {latitude}, Longitude: {longitude}, Altitude: {altitude}, Heading: {heading}")
 
+        # Temporary ICAO address enconding
+        if data["properties"]["uas_name"] == "AR3":
+            icao_id = 1
+        elif data["properties"]["uas_name"] == "AR4":
+            icao_id = 2
+        elif data["properties"]["uas_name"] == "Ogassa":
+            icao_id = 3
+        elif data["properties"]["uas_name"] == "AR5":
+            icao_id = 4
+
         # Create a MAVLink ADSB_VEHICLE message
         msg = master.mav.adsb_vehicle_encode(
-            123456,  # ICAO address (example value)
+            icao_id,  # ICAO address (example value)
             int(latitude),  # Latitude in degrees * 1e7
             int(longitude),  # Longitude in degrees * 1e7
             0,  # Altitude type (0 for barometric altitude)
@@ -123,10 +133,10 @@ def json_to_mavlink(json_data):
             int(heading),  # Course over ground in centidegrees
             0,  # Horizontal velocity in cm/s
             0,  # Vertical velocity in cm/s
-            b"CALLSIGN",  # Callsign (example value) encoded to bytes
+            data["properties"]["uas_name"].encode('UTF-8'),  # Callsign (example value) encoded to bytes
             0,  # Emitter type (example value)
             0,  # Time since last communication in seconds
-            0,  # Flags (example value)
+            447,  # Flags (example value)
             0   # Squawk code (example value)
         )
         

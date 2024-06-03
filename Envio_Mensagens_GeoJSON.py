@@ -25,7 +25,7 @@ def send_test_messages():
                 "timestamp": 1627473047,
                 "object": "UAS",
                 "msg_type": "uas_self_presence",
-                "uas_name": "AR3",
+                "uas_name": "AR5",
                 "gcs_name": "Tekever",
                 "heading": 90,
                 "mission": "op1_recce1",
@@ -36,19 +36,36 @@ def send_test_messages():
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [-85.207, 45.4134, 105]
+                "coordinates": [32, -9, 105]
             },
             "properties": {
                 "timestamp": 1627473050,
                 "object": "UAS",
                 "msg_type": "uas_self_presence",
-                "uas_name": "AR3",
+                "uas_name": "AR4",
                 "gcs_name": "Tekever",
                 "heading": 95,
                 "mission": "op1_recce1",
                 "comments": "Goal: detect ENY on AO1"
             }
         },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [34, -10, 100]
+            },
+            "properties": {
+                "timestamp": 1627473047,
+                "object": "UAS",
+                "msg_type": "uas_self_presence",
+                "uas_name": "Ogassa",
+                "gcs_name": "UAVision",
+                "heading": 90,
+                "mission": "op1_recce1",
+                "comments": "Goal: detect ENY on AO1"
+            }
+        }
         # Adicione mais mensagens de teste conforme necessário
     ]
 
