@@ -1,3 +1,7 @@
+##########################################################################################################################################################################################
+#Desenvolvido em parceria pela equipa do IST a participar no ARTEX e pelo Alferes-Aluno João Silva da AM
+##########################################################################################################################################################################################
+
 import time
 import json
 from pymavlink import mavutil
@@ -51,8 +55,8 @@ fixed_values = {
         "timestamp": 0,  # Placeholder, será atualizado com os valores recebidos
         "object": "UAS",
         "msg_type": "uas_self_presence",
-        "uas_name": "AR3",
-        "gcs_name": "Tekever",
+        "uas_name": "IST_UAS",
+        "gcs_name": "IST_GCS",
         "heading": 0,  # Placeholder, será atualizado com os valores recebidos
         "mission": "op1_recce1",
         "comments": "Goal: detect ENY on AO1"
