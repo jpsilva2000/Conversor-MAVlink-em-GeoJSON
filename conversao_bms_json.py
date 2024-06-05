@@ -10,7 +10,7 @@ import paho.mqtt.client as mqtt
 # MQTT Configuration
 MQTT_BROKER = '83.223.228.1'
 MQTT_PORT = 1883
-MQTT_TOPIC = 'uas/telemetry'
+MQTT_TOPIC = 'uas_idmec_eyeinthesky'
 
 # Create MQTT client and connect to the broker
 mqtt_client = mqtt.Client()
