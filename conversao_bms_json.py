@@ -8,7 +8,7 @@ from pymavlink import mavutil
 import paho.mqtt.client as mqtt
 
 # MQTT Configuration
-MQTT_BROKER = 'test.mosquitto.org'
+MQTT_BROKER = '83.223.228.1'
 MQTT_PORT = 1883
 MQTT_TOPIC = 'uas/telemetry'
 
