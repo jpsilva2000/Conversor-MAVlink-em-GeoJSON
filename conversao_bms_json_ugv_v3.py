@@ -7,10 +7,12 @@ import paho.mqtt.client as mqtt
 MQTT_BROKER = '83.223.228.1'
 MQTT_PORT = 1883
 MQTT_TOPICS = [
-    ('blue/ugs/uavision', 1),
-    ('blue/ugs/inesctec/tribe', 2)
+    ('red/sensor/swatter/1', 1),
+    ('red/sensor/swatter/2', 2),
+    ('red/sensor/swatter/3', 3),
+    ('red/sensor/swatter/4', 4)
 ]
-MQTT_TOPIC = 'blue/ugs/ist/vigilant'  
+MQTT_TOPIC = 'red/ugs/ist/vigilant'  
 
 # Create MQTT client and connect to the broker
 mqtt_client = mqtt.Client()
