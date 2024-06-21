@@ -159,13 +159,13 @@ while True:
         # Listen for incoming MAVLink messages
         msg = master.recv_match(blocking=False)
         if msg:
-            if msg.get_type() == 'GLOBAL_POSITION_INT':
-                global_position_int(msg)
-            elif msg.get_type() == 'GPS_RAW_INT':
+            if msg.get_type() == 'GPS_RAW_INT':
                 gps_raw_int(msg)
+            #elif msg.get_type() == 'GLOBAL_POSITION_INT':
+                #global_position_int(msg)
+
     except mavutil.mavlink.MAVLinkException as e:
         print(f"MAVLink communication error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
 
-    time.sleep(1)
