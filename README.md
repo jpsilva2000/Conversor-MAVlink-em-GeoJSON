@@ -1,6 +1,6 @@
 # Conversor-MAVlink-em-GeoJSON
 
-O objetivo dos seguintes scripts é criar um ficheiro ".json" através da leitura de mensagens GLOBAL_POSITION_INT, estes foram desenvolvidos com recurso ao pymvalink. 
+O objetivo dos seguintes scripts é criar um ficheiro ".json" através da leitura de mensagens GPS_RAW_INT, estes foram desenvolvidos com recurso ao pymvalink. 
 
 -> O script "heatbeats_plus_position.py" envia Heartbeats e uma Posição fixa, simbolizando o UAV/UGV. O envio das mensagens GLOBAL_POSITION_INT será utilizado para testar a funcionalidade do script conversor. 
 
