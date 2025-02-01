@@ -10,3 +10,5 @@ Com este comando, a ligação está estabelecida e a estação está a fazer for
 
 
 -> Correndo o script "conversor_bms_json.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON e enviado por MQTT para um servidor. Além disso também está à escuta de mensagens GeoJSON no servidor, traduz para MAVlink, e faz o envio das mesmas como mensagens ADSB.
+
+-> Correndo o script "conversor_bms_json_final.py" este recebe as mensagens e efetua a "tradução" para JSON, depois disto é guardado o output num ficheiro JSON e enviado por MQTT para um servidor. Além disso também está à escuta de mensagens GeoJSON no servidor, traduz para MAVlink, e faz o envio das mesmas como mensagens ADSB. Adicionalmente também permite o envio para o BMS diretamente
